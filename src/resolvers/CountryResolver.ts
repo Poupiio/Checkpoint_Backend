@@ -10,6 +10,12 @@ export class CountryResolver {
       return countries;
    }
 
+   @Query(() => Country)
+   async getCountryByCode(@Arg("code") code: string) {
+      const country = await Country.findOneBy({ code });
+      return country;
+   }
+
    @Mutation(() => Country)
    async createCountry(@Arg("data") newdata: CountryInput) {
       const newCountry = Country.create({
