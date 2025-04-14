@@ -11,6 +11,9 @@ class CountryInput implements Partial<Country> {
 
    @Field()
    emoji: string;
+
+   @Field({ nullable: true })
+   continentCode?: string;
 }
 
 export default CountryInput;

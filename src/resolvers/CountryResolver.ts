@@ -16,14 +16,18 @@ export class CountryResolver {
       return country;
    }
 
+   @Query(() => [Country])
+   async getAllCountriesByContinent(@Arg("continentCode") continentCode: string) {
+      const countriesByContinent = await Country.findBy({ continentCode });
+      return countriesByContinent;
+   }
+
    @Mutation(() => Country)
    async createCountry(@Arg("data") newdata: CountryInput) {
       const newCountry = Country.create({
          ...newdata
-      })
-
+      });
       const countryToAdd = await newCountry.save();
-
       return countryToAdd;
    }
 }
